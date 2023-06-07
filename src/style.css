@@ -1,0 +1,15 @@
+.board {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 414px;
+    margin: 20px auto;
+}
+
+.card {
+    display: inline-block;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    margin: 1px 1px;
+}
