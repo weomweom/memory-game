@@ -114,32 +114,44 @@ class Board extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            activeCards: 0,
             cards: Array(16).fill(false),
             cardsImages: props.cardsImages,
             winningCombo: [],
+            moves: 0,
+            activeCards: [],
         }
     }
 
-    handleClick(i) { 
-      const currentCards = this.state.cards;
-      const activeCards = currentCards.filter((card) => card);
-      let updatedCards = [...currentCards];
+    handleClick(i) {
+      let currentCards = this.state.cards;
+      let activeCards = currentCards.filter((card) => card);
       const cardsValue = this.state.cardsImages.map(card => card.value);
       let winningCombo = this.state.winningCombo;
+      const updatedCards = Array(16).fill(false);
 
-      if (activeCards.length < 2) {
-        updatedCards[i] = !updatedCards[i];
-        this.setState({cards: updatedCards});
-      } else {
-        const indexOfActiveCards = [currentCards.indexOf(true), currentCards.indexOf(activeCards[1], currentCards.indexOf(true) + 1)];
+      if(currentCards[i])
+        return;
+
+      if (activeCards.length < 2 && !winningCombo.includes(i)) {
+        currentCards[i] = true;
+        activeCards = currentCards.filter((card) => card);
+        this.setState({activeCards: activeCards});
+      }
+      else return;
+
+      if (!winningCombo.includes(i))
+        this.setState({moves: this.state.moves + 1});
+
+      if (activeCards.length === 2) {
+        const indexOfActiveCards = [currentCards.indexOf(true), currentCards.indexOf(true, currentCards.indexOf(true) + 1)];
         if(cardsValue[indexOfActiveCards[0]] === cardsValue[indexOfActiveCards[1]]){
           winningCombo = [...winningCombo, indexOfActiveCards[0], indexOfActiveCards[1]];
-          this.setState({winningCombo: winningCombo});
+          setTimeout(() => this.setState({winningCombo: winningCombo}), 500);
+          setTimeout(() => this.setState({cards: updatedCards}), 750);
+        } else {
+          setTimeout(() => this.setState({cards: updatedCards}), 750);
+          return;
         }
-        updatedCards = Array(16).fill(false);
-        updatedCards[i] = !updatedCards[i];
-        this.setState({cards: updatedCards});
       }
     }
 
@@ -167,6 +179,7 @@ class Board extends React.Component {
                     ))}
                     </div>
                 ))}
+                <div className="moves">moves: {this.state.moves}</div>
             </div>
         );
     }
@@ -180,7 +193,7 @@ class Card extends React.Component {
     render() {
         let style;
         if(this.props.isWinningIndex)
-          style = {backgroundImage: `url()`};
+          style = {backgroundImage: `none`};
         else
           style = {backgroundImage: this.props.isActive ? `url(${this.props.cardImage})` : `url(${require('./img/hidden.jpg')})` };
         return ( 
