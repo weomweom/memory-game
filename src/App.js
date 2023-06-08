@@ -121,7 +121,7 @@ class Board extends React.Component {
         }
     }
 
-    handleClick(i) {
+    handleClick(i) { 
       const currentCards = this.state.cards;
       const activeCards = currentCards.filter((card) => card);
       let updatedCards = [...currentCards];
@@ -140,12 +140,6 @@ class Board extends React.Component {
         updatedCards = Array(16).fill(false);
         updatedCards[i] = !updatedCards[i];
         this.setState({cards: updatedCards});
-      }
-
-      if(this.state.winningCombo.length === 16)
-      {
-        alert('wygrales');
-        return;
       }
     }
 
