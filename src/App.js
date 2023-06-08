@@ -117,7 +117,7 @@ class Board extends React.Component {
             activeCards: 0,
             cards: Array(16).fill(false),
             cardsImages: props.cardsImages,
-            winningCombo: Array(2).fill(-1),
+            winningCombo: [],
         }
     }
 
@@ -126,25 +126,39 @@ class Board extends React.Component {
       const activeCards = currentCards.filter((card) => card);
       let updatedCards = [...currentCards];
       const cardsValue = this.state.cardsImages.map(card => card.value);
+      let winningCombo = this.state.winningCombo;
 
       if (activeCards.length < 2) {
         updatedCards[i] = !updatedCards[i];
         this.setState({cards: updatedCards});
       } else {
         const indexOfActiveCards = [currentCards.indexOf(true), currentCards.indexOf(activeCards[1], currentCards.indexOf(true) + 1)];
-        if(cardsValue[indexOfActiveCards[0]].value === cardsValue[indexOfActiveCards[1]].value)
-          console.log("dziala");
+        if(cardsValue[indexOfActiveCards[0]] === cardsValue[indexOfActiveCards[1]]){
+          winningCombo = [...winningCombo, indexOfActiveCards[0], indexOfActiveCards[1]];
+          this.setState({winningCombo: winningCombo});
+        }
         updatedCards = Array(16).fill(false);
         updatedCards[i] = !updatedCards[i];
         this.setState({cards: updatedCards});
       }
+
+      if(this.state.winningCombo.length === 16)
+      {
+        alert('wygrales');
+        return;
+      }
     }
 
     renderCard(i, column) {
+      let isWinningIndex = false;
+      if(this.state.winningCombo.includes(i))
+        isWinningIndex = true;
+
       return <Card 
         isActive={this.state.cards[i]} 
         onClick={() => this.handleClick(i)}
         cardImage={this.state.cardsImages[i].url}
+        isWinningIndex={isWinningIndex}
         key={i}
         />;
     }
@@ -170,7 +184,11 @@ class Card extends React.Component {
     }
 
     render() {
-        const style = {backgroundImage: this.props.isActive ? `url(${this.props.cardImage})` : `url(${require('./img/hidden.jpg')})` };
+        let style;
+        if(this.props.isWinningIndex)
+          style = {backgroundImage: `url()`};
+        else
+          style = {backgroundImage: this.props.isActive ? `url(${this.props.cardImage})` : `url(${require('./img/hidden.jpg')})` };
         return ( 
         <button 
             className="card"
