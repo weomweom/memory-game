@@ -16,6 +16,8 @@ import el7_0 from "./img/el7-0.jpg";
 import el7_1 from "./img/el7-1.jpg";
 import el8_0 from "./img/el8-0.jpg";
 import el8_1 from "./img/el8-1.jpg";
+import hidden from "./img/hidden.jpg";
+import tlo from "./img/tlo.jpg";
 
 function App() {
   return (
@@ -119,6 +121,8 @@ class Board extends React.Component {
             winningCombo: [],
             moves: 0,
             activeCards: [],
+            isWin: false,
+            winningInfo: ''
         }
     }
 
@@ -128,6 +132,8 @@ class Board extends React.Component {
       const cardsValue = this.state.cardsImages.map(card => card.value);
       let winningCombo = this.state.winningCombo;
       const updatedCards = Array(16).fill(false);
+
+      clearTimeout();
 
       if(currentCards[i])
         return;
@@ -153,6 +159,11 @@ class Board extends React.Component {
           return;
         }
       }
+
+      if(winningCombo.length === 16) {
+        this.setState({isWin: true});
+        this.setState({winningInfo: "you won!"});
+      }
     }
 
     renderCard(i, column) {
@@ -165,6 +176,7 @@ class Board extends React.Component {
         onClick={() => this.handleClick(i)}
         cardImage={this.state.cardsImages[i].url}
         isWinningIndex={isWinningIndex}
+        isWin={this.state.isWin}
         key={i}
         />;
     }
@@ -172,6 +184,10 @@ class Board extends React.Component {
     render() {
         return ( 
             <div className="board">
+              <div className="winningInfo">
+                {this.state.winningInfo}
+                <button onClick={() => window.location.reload()}>new game</button>
+              </div>
                 {[0,1,2,3].map((row) => (
                     <div key={row}>
                     {[0,1,2,3].map((column) => (
@@ -192,10 +208,15 @@ class Card extends React.Component {
 
     render() {
         let style;
+        if (this.props.isWin) {
+          style = {backgroundImage: `url(${tlo})`};
+        }
+        else {
         if(this.props.isWinningIndex)
           style = {backgroundImage: `none`};
         else
-          style = {backgroundImage: this.props.isActive ? `url(${this.props.cardImage})` : `url(${require('./img/hidden.jpg')})` };
+          style = {backgroundImage: this.props.isActive ? `url(${this.props.cardImage})` : `url(${hidden})` };
+        }
         return ( 
         <button 
             className="card"
