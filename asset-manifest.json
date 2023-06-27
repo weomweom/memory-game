@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/memory-game/static/css/main.144d7650.css",
+    "main.js": "/memory-game/static/js/main.b2a957b0.js",
+    "static/media/el7-0.jpg": "/memory-game/static/media/el7-0.b4a64ab850814134a81f.jpg",
+    "static/media/el7-1.jpg": "/memory-game/static/media/el7-1.4ca2fe017166ce72ce71.jpg",
+    "static/media/el3-1.jpg": "/memory-game/static/media/el3-1.76b710a23ea417bf4996.jpg",
+    "static/media/el3-0.jpg": "/memory-game/static/media/el3-0.7fb19ace0c1650bb3fd8.jpg",
+    "static/media/el1-0.jpg": "/memory-game/static/media/el1-0.c69ccf67ec5aba22ab72.jpg",
+    "static/media/el1-1.jpg": "/memory-game/static/media/el1-1.64be95ca3330bb7c31eb.jpg",
+    "static/media/el8-0.jpg": "/memory-game/static/media/el8-0.c24b6aee0449d202091a.jpg",
+    "static/media/el8-1.jpg": "/memory-game/static/media/el8-1.07f29aec11744f213374.jpg",
+    "static/media/el5-0.jpg": "/memory-game/static/media/el5-0.f550983bcd2fcab0e4d0.jpg",
+    "static/media/el5-1.jpg": "/memory-game/static/media/el5-1.072b0212c8a1d0db8d35.jpg",
+    "static/media/el6-0.jpg": "/memory-game/static/media/el6-0.dccc31cb9fb8c7ade20e.jpg",
+    "static/media/el6-1.jpg": "/memory-game/static/media/el6-1.97fa8e8ceffdba922248.jpg",
+    "static/media/el2-0.jpg": "/memory-game/static/media/el2-0.3a19462e77e9636c72a1.jpg",
+    "static/media/el2-1.jpg": "/memory-game/static/media/el2-1.5083036fdbe288eb5e59.jpg",
+    "static/media/el4-0.jpg": "/memory-game/static/media/el4-0.fc79c55af82136543353.jpg",
+    "static/media/el4-1.jpg": "/memory-game/static/media/el4-1.873b745e5d17a2394329.jpg",
+    "static/media/tlo.jpg": "/memory-game/static/media/tlo.5080ab2394df394b4036.jpg",
+    "static/media/hidden.jpg": "/memory-game/static/media/hidden.020b2c9e3c7d68dfbe79.jpg",
+    "index.html": "/memory-game/index.html",
+    "main.144d7650.css.map": "/memory-game/static/css/main.144d7650.css.map",
+    "main.b2a957b0.js.map": "/memory-game/static/js/main.b2a957b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.144d7650.css",
+    "static/js/main.b2a957b0.js"
+  ]
+}
